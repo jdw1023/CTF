@@ -9,8 +9,7 @@
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="manifest" href="app.webmanifest">
-	<!-- <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script> -->
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js' integrity='sha512-6ORWJX/LrnSjBzwefdNUyLCMTIsGoNP6NftMy2UAm1JBm6PRZCO1d7OHBStWpVFZLO+RerTvqX/Z9mBFfCJZ4A==' crossorigin='anonymous'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/cash/8.1.1/cash.min.js' integrity='sha512-X+cPfvYTMQ4sCK62U3QG9rdhziHcvR48TwiEJmlaXOpQH/aSaarxkL+zahylcvcZLDkGujg4o/ORdjSeBsRlMQ==' crossorigin='anonymous'></script>
 	<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
 </head>
 
@@ -82,7 +81,7 @@
 			$("#weight").val(data.weight);
 			// if data is valid, calculate and display result
 			if (data.team_points && data.best_points && data.team_place && data.total_teams && data.weight) {
-				$("#calc").submit();
+				$("#calc").trigger('submit');
 			};
 			// calculate and show result
 			// $("#result").html(calc(data));
