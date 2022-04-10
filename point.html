@@ -11,29 +11,78 @@
 
 <body>
 	<script>
-		// get data from form
-		function calc(e) {
-			e.preventDefault();
-			var data = {
-				"team_points": parseFloat($("#team_points").val()),
-				"best_points": parseFloat($("#best_points").val()),
-				"team_place": parseFloat($("#team_place").val()),
-				"weight": parseFloat($("#weight").val()),
-				"total_teams": parseFloat($("#total_teams").val()),
-			};
+		// https://css-tricks.com/snippets/javascript/get-url-variables/
+		function getQueryVariable(variable) {
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i = 0; i < vars.length; i++) {
+				var pair = vars[i].split("=");
+				if (pair[0] == variable) {
+					return pair[1];
+				}
+			}
+			return (false);
+		}
+
+		function calc(data) {
 			let result = 0.0;
-			let points_coef = data.team_points/data.best_points;
-			let place_coef = 1/data.team_place;
+			let points_coef = data.team_points / data.best_points;
+			let place_coef = 1 / data.team_place;
 			console.log(points_coef);
 			if (points_coef > 0) {
-				result = (points_coef + place_coef) * data.weight / (1/(1+(data.team_place/data.total_teams)));
+				result = (points_coef + place_coef) * data.weight / (1 / (1 + (data.team_place / data.total_teams)));
 			};
-			$("#result").html(result.toFixed(6));
+			return result.toFixed(6);
+		};
+
+		// get data from form
+		function formHandler(e){
+			e.preventDefault();
+			let data = {
+				team_points: parseFloat($("#team_points").val()),
+				best_points: parseFloat($("#best_points").val()),
+				team_place: parseFloat($("#team_place").val()),
+				total_teams: parseFloat($("#total_teams").val()),
+				weight: parseFloat($("#weight").val())
+			};
+			
+			// calculate and display result
+			$("#result").text(calc(data));
+			// form to result_url
+			$("#result_url").text( window.location.origin + window.location.pathname + "?team_points=" + data.team_points + "&best_points=" + data.best_points + "&team_place=" + data.team_place + "&total_teams=" + data.total_teams + "&weight=" + data.weight);
 			return false;
 		};
+
+		// get data from url params	
+		function init() {
+			let data = {
+				team_points: getQueryVariable("team_points"),
+				best_points: getQueryVariable("best_points"),
+				team_place: getQueryVariable("team_place"),
+				total_teams: getQueryVariable("total_teams"),
+				weight: getQueryVariable("weight")
+			};
+			
+			console.log(data);
+			// set form to data
+			$("#team_points").val(data.team_points);
+			$("#best_points").val(data.best_points);
+			$("#team_place").val(data.team_place);
+			$("#total_teams").val(data.total_teams);
+			$("#weight").val(data.weight);
+
+			// calculate and show result
+			// $("#result").html(calc(data));
+			
+			$("#calc").submit();
+		};
+		// when page is loaded
+		$(document).ready(function() {
+			init();
+		});
 	</script>
 	<article>
-		<form id="calc" onsubmit="calc(event)">
+		<form id="calc" onsubmit="formHandler(event)">
 			<div class="form-group">
 				<label for="team_points">Team points</label>
 				<input type="number" id="team_points" placeholder="Team points" step="any" required>
@@ -52,7 +101,8 @@
 			</div>
 			<div class="form-group">
 				<label for="total_teams">Total teams</label>
-				<input type="number" id="total_teams" step="any" placeholder="Total # of teams that have point of > 0" required>
+				<input type="number" id="total_teams" step="any" placeholder="Total # of teams that have point of > 0"
+					required>
 			</div>
 			<div class="form-group">
 				<button type="submit">Calculate</button>
@@ -61,6 +111,7 @@
 	</article>
 	<article>
 		<div id="result"></div>
+		<div id="result_url"></div>
 	</article>
 </body>
 
