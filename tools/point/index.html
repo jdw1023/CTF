@@ -70,11 +70,14 @@
 			$("#team_place").val(data.team_place);
 			$("#total_teams").val(data.total_teams);
 			$("#weight").val(data.weight);
-
+			// if data is valid, calculate and display result
+			if (data.team_points && data.best_points && data.team_place && data.total_teams && data.weight) {
+				$("#calc").submit();
+			};
 			// calculate and show result
 			// $("#result").html(calc(data));
 			
-			$("#calc").submit();
+
 		};
 		// when page is loaded
 		$(document).ready(function() {
