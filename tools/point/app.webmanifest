@@ -1,0 +1,16 @@
+{
+	"name": "Unofficial CTFTime Calculator",
+	"short_name": "CTF Calculator",
+	"theme_color": "#211f11",
+	"background_color": "#211f11",
+	"display": "standalone",
+	"scope": "/",
+	"start_url": "/",
+	"icons": [
+        {
+            "src": "icon.svg",
+            "purpose": "maskable any",
+            "sizes": "any"
+        }
+    ]
+  }

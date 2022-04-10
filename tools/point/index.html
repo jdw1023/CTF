@@ -3,14 +3,22 @@
 
 <head>
 	<title>Unofficial CTFTime Calculator</title>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js'
-		integrity='sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=='
-		crossorigin='anonymous'></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="theme-color" content="#1f1111">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="manifest" href="app.webmanifest">
+	<!-- <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script> -->
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js' integrity='sha512-6ORWJX/LrnSjBzwefdNUyLCMTIsGoNP6NftMy2UAm1JBm6PRZCO1d7OHBStWpVFZLO+RerTvqX/Z9mBFfCJZ4A==' crossorigin='anonymous'></script>
 	<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
 </head>
 
 <body>
 	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('service-worker.js');
+		}
 		// https://css-tricks.com/snippets/javascript/get-url-variables/
 		function getQueryVariable(variable) {
 			var query = window.location.search.substring(1);
@@ -117,7 +125,9 @@
 		</form>
 		<div id="result"></div>
 		<!-- <div class="layout-grid" -->
-		<div><p><a id="result_url" href=""></a></p></div>
+		<div>
+			<p><a id="result_url" href=""></a></p>
+		</div>
 		<footer>
 			<p><a href="https://github.com/jdw1023/CTF/tree/main/tools/point">Source Code</a></p>
 			<p>&copy; 2022 <a href="https://github.com/jdw1023/" target="_blank">JD</a></p>
