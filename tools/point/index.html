@@ -36,7 +36,7 @@
 		};
 
 		// get data from form
-		function formHandler(e){
+		function formHandler(e) {
 			e.preventDefault();
 			let data = {
 				team_points: parseFloat($("#team_points").val()),
@@ -45,11 +45,11 @@
 				total_teams: parseFloat($("#total_teams").val()),
 				weight: parseFloat($("#weight").val())
 			};
-			
+
 			// calculate and display result
 			$("#result").text(calc(data));
 			// form to result_url
-			$("#result_url").text( window.location.origin + window.location.pathname + "?team_points=" + data.team_points + "&best_points=" + data.best_points + "&team_place=" + data.team_place + "&total_teams=" + data.total_teams + "&weight=" + data.weight);
+			$("#result_url").text(window.location.origin + window.location.pathname + "?team_points=" + data.team_points + "&best_points=" + data.best_points + "&team_place=" + data.team_place + "&total_teams=" + data.total_teams + "&weight=" + data.weight);
 			return false;
 		};
 
@@ -62,7 +62,7 @@
 				total_teams: getQueryVariable("total_teams"),
 				weight: getQueryVariable("weight")
 			};
-			
+
 			console.log(data);
 			// set form to data
 			$("#team_points").val(data.team_points);
@@ -76,15 +76,16 @@
 			};
 			// calculate and show result
 			// $("#result").html(calc(data));
-			
+
 
 		};
 		// when page is loaded
-		$(document).ready(function() {
+		$(document).ready(function () {
 			init();
 		});
 	</script>
-	<article>
+	<main
+		style="padding-left: min(30px, 5%); padding-right: min(30px, 5%); padding-top: min(20px, 5%); padding-bottom: min(10px, 3%);">
 		<h1>Unofficial CTFTime Calculator</h1>
 		<form id="calc" onsubmit="formHandler(event)">
 			<div class="form-group">
@@ -113,12 +114,13 @@
 			</div>
 		</form>
 		<div id="result"></div>
+		<!-- <div class="layout-grid" -->
 		<div id="result_url"></div>
 		<footer>
 			<p><a href="https://github.com/jdw1023/CTF/tree/main/tools/point">Source Code</a></p>
 			<p>&copy; 2022 <a href="https://github.com/jdw1023/" target="_blank">JD</a></p>
 		</footer>
-	</article>
+	</main>
 
 </body>
 
