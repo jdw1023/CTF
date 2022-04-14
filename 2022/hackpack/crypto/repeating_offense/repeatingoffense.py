@@ -104,7 +104,8 @@ class Paillier_then_RSA:
         self.G = randbelow(self.N * self.N)
 
         # Paillier private key
-        self.L = F // GCD(P - 1, Q - 1)
+        #self.L = F // GCD(P - 1, Q - 1)
+        self.L = F // self.N
         self.U = inverse((pow(self.G, self.L, self.N * self.N) - 1) // self.N, self.N)
 
 
