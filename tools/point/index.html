@@ -38,7 +38,7 @@
 			let place_coef = 1 / data.team_place;
 			console.log(points_coef);
 			if (points_coef > 0) {
-				result = (points_coef + place_coef) * data.weight / (1 / (1 + (data.team_place / data.total_teams)));
+				result = (points_coef + place_coef) * data.weight; // / (1 / (1 + (data.team_place / data.total_teams)));
 			};
 			return result.toFixed(6);
 		};
